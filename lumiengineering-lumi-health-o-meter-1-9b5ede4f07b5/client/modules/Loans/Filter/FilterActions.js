@@ -1,4 +1,4 @@
-import callApi from '../../util/apiCaller';
+import callApi from '../../../util/apiCaller';
 
 export const GOT_INDUSTRIES = 'GOT_INDUSTRIES';
 
@@ -9,12 +9,9 @@ export function gotIndustries(data) {
     };
 }
 
-
-
-// fetch data according to filter
 export function fetchIndustries() { 
     return (dispatch) => {
       const res = callApi('/loan_industries').then((res) => dispatch(gotIndustries(res)))
       return res
-    };
-  }
+    }
+}

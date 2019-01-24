@@ -1,6 +1,5 @@
 import { GOT_LOANS } from './LoansActions';
 
-// Initial State
 const initialState = { data: [] };
 
 const LoansReducer = (state = initialState, action) => {
@@ -14,10 +13,6 @@ const LoansReducer = (state = initialState, action) => {
   }
 };
 
-/* Selectors */
-
-// Get all loans
 export const getLoans = state => state.loans.data
 
-// Export Reducer
 export default LoansReducer;

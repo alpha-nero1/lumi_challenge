@@ -1,19 +1,21 @@
+// Imports.
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchIndustries } from './IndustryActions';
-import { fetchData } from './LoansActions';
+// Actions.
+import { fetchIndustries } from './FilterActions';
+import { fetchData } from '../LoansActions';
 
-// Import Selectors
-import { getIndustries } from './IndustryReducer';
+// Reducers.
+import { getIndustries } from './FilterReducer';
+
 
 export class Filter extends Component {
 
     constructor(props) {
         super(props)
 
-         // DEFAULTS!
-        this.state = {
+        this.state = { // state defaults
             industry: "Hospitality",
             health: 2,
         }
@@ -22,10 +24,9 @@ export class Filter extends Component {
         this.handle_input_change = this.handle_input_change.bind(this)
     }
 
+    // get all unique industries options
     componentDidMount() {
         this.props.dispatch(fetchIndustries())
-
-        console.log("FILTER PROPS: " + this.props)
     }
 
     handle_input_change(event) {
@@ -39,12 +40,11 @@ export class Filter extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-
-        this.props.dispatch(fetchData(this.state)) // perform POST with submission data
+        this.props.dispatch(fetchData(this.state))
     }
 
     render() {
-        const { industries } = this.props; // this props = industries
+        const { industries } = this.props
         let list
         if (industries && industries.length) {
             list = industries.map((industry, i) => {
@@ -56,23 +56,23 @@ export class Filter extends Component {
 
         return(
             <div>
+                <h1>Select Filters</h1>
                 <form onSubmit={this.handle_submit}>
-
-                    <label>
-                        Select loan health: 
-                        <select value={this.state.health} onChange={this.handle_input_change} type="number" name="health">
-                            <option value="2">High</option>
-                            <option value="1">Medium</option>
-                            <option value="0">Low</option>
-                        </select>
-                    </label>
-                    <label>
-                        Select loan industry:
-                        <select value={this.state.industry} onChange={this.handle_input_change} type="text" name="industry">
-                            {list}
-                        </select>
-                    </label>
-
+                <p>
+                    <b>Select loan industry: </b>
+                    <select value={this.state.industry} onChange={this.handle_input_change} type="text" name="industry">
+                        {list}
+                    </select>
+                </p>
+                <p>
+                    <b>Select loan health: </b>
+                    <select value={this.state.health} onChange={this.handle_input_change} type="number" name="health">
+                        <option value="2">High</option>
+                        <option value="1">Medium</option>
+                        <option value="0">Low</option>
+                    </select>
+                </p>
+                <br/>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
@@ -80,22 +80,22 @@ export class Filter extends Component {
     }
 }
 
-Filter.need = [() => { return fetchIndustries(); }];
+Filter.need = [() => { return fetchIndustries() }]
 
 // Retrieve data from store as props
 function mapStateToProps(state) {
     return {
-      industries: getIndustries(state),
+        industries: getIndustries(state),
     }
 }
   
-  Filter.propTypes = {
+Filter.propTypes = {
     industries: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
-  };
-  
-  Filter.contextTypes = {
+};
+
+Filter.contextTypes = {
     router: React.PropTypes.object,
-  };
+};
   
-  export default connect(mapStateToProps)(Filter);
+export default connect(mapStateToProps)(Filter);

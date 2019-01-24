@@ -17,8 +17,6 @@ export default function callApi(endpoint, method = 'get', body) {
       return Promise.reject(json);
     }
 
-    console.log('INFO: callApi json response, data: ' + json)
-
     return json;
   })
   .then(

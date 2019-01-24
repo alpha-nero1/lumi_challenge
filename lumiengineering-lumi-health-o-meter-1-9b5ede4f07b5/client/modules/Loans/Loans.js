@@ -1,30 +1,26 @@
+// Imports.
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import Filter from './Filter'
-
-// Import Actions
-import { fetchData } from './LoansActions';
+import Filter from './Filter/Filter'
 import Gauge from 'react-svg-gauge';
 import styles from './Loans.css';
 
-// Import Selectors
+// Reducers
 import { getLoans } from './LoansReducer';
 
 class LoansPage extends Component {
+
   constructor(props) {
     super(props)
-
   }
 
-  getColor(val) {
+  get_color(val) {
     if (val > 80) return 'green'
     if (val > 50) return 'gold'
     return 'red'
   }
 
   render() {
-    console.log("in loans: " + this.props)
-
     const { loans } = this.props;
     let list;
 
@@ -36,7 +32,7 @@ class LoansPage extends Component {
               <h2>{loan.name}</h2>
               <p>
                 <b>Current Health:</b>
-                <b style={{ color: this.getColor(loan.health) }}>
+                <b style={{ color: this.get_color(loan.health) }}>
                   &nbsp; {loan.health}
                 </b>
               </p>
@@ -48,7 +44,7 @@ class LoansPage extends Component {
             <div className={styles.graph}>
               <Gauge
                 value={loan.health}
-                color={this.getColor(loan.health)}
+                color={this.get_color(loan.health)}
                 width={150}
                 height={150}
                 label=""
