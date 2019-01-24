@@ -1,0 +1,13 @@
+.loan {
+	display: flex;
+  border-bottom: 1px solid #aaa;
+  align-items: center;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.graph {
+  margin-bottom: 20px;
+}
