@@ -18,23 +18,13 @@ const health_values = [0, 50, 80, 110] // extra position workaround
  * @returns void
  */
 export async function get_loans(req, res) {
-  var filtered_data = await get_data(req)
+  const filtered_data = await get_data(req)
   return res.send(filtered_data)
 }
 
 export async function get_industries(req, res) {
-  var industry_data = await get_unique_ind()
-  console.log("DATA IN CONTROLLER: " + industry_data)
+  const industry_data = await all_loans.distinct('industry')
   return res.send(industry_data)
-}
-
-async function get_unique_ind() {
-  try {
-    const unique_array = await all_loans.distinct('industry')
-    return unique_array
-  } catch (e) {
-    console.log(e);
-  }
 }
 
 // include filter param

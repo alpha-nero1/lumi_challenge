@@ -45,7 +45,6 @@ export class Filter extends Component {
 
     render() {
         const { industries } = this.props; // this props = industries
-        console.log('INFO: props in render method, data: ' + this.props)
         let list
         if (industries && industries.length) {
             list = industries.map((industry, i) => {
@@ -58,12 +57,6 @@ export class Filter extends Component {
         return(
             <div>
                 <form onSubmit={this.handle_submit}>
-                    <label>
-                        Select loan industry:
-                        <select value={this.state.industry} onChange={this.handle_input_change} type="text" name="industry">
-                            {list}
-                        </select>
-                    </label>
 
                     <label>
                         Select loan health: 
@@ -73,6 +66,12 @@ export class Filter extends Component {
                             <option value="0">Low</option>
                         </select>
                     </label>
+                    <label>
+                        Select loan industry:
+                        <select value={this.state.industry} onChange={this.handle_input_change} type="text" name="industry">
+                            {list}
+                        </select>
+                    </label>
 
                     <input type="submit" value="Submit" />
                 </form>
@@ -80,6 +79,8 @@ export class Filter extends Component {
         )
     }
 }
+
+Filter.need = [() => { return fetchIndustries(); }];
 
 // Retrieve data from store as props
 function mapStateToProps(state) {

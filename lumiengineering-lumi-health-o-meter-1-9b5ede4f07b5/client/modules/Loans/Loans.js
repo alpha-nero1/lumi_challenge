@@ -23,6 +23,8 @@ class LoansPage extends Component {
   }
 
   render() {
+    console.log("in loans: " + this.props)
+
     const { loans } = this.props;
     let list;
 

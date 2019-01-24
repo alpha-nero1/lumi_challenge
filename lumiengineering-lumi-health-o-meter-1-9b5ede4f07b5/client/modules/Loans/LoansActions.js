@@ -15,7 +15,6 @@ export function gotData(data) {
 export function fetchData(data) { 
   return (dispatch) => {
     const res = callApi('/loans', 'post', data).then((res) => dispatch(gotData(res)))
-    console.log("WE HAVE LOAN RES: " + res)
     return res
   };
 }

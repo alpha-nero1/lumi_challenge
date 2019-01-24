@@ -1,4 +1,4 @@
-import { GOT_INDUSTRIES } from './LoansActions';
+import { GOT_INDUSTRIES } from './IndustryActions';
 
 // Initial State
 const initialState = { data: [] };

@@ -9,10 +9,12 @@ export function gotIndustries(data) {
     };
 }
 
-export function fetchIndustries() {
+
+
+// fetch data according to filter
+export function fetchIndustries() { 
     return (dispatch) => {
-        const res = callApi('/loan_industries', 'post').then(res => dispatch(gotIndustries(res)));
-        console.log("FETCH INDUSTRIES DATA: " + res)
-        return res
-    }
-}
+      const res = callApi('/loan_industries').then((res) => dispatch(gotIndustries(res)))
+      return res
+    };
+  }
