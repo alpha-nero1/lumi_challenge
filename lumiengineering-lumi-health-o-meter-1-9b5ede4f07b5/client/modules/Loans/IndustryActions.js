@@ -12,7 +12,7 @@ export function gotIndustries(data) {
 export function fetchIndustries() {
     return (dispatch) => {
         const res = callApi('/loan_industries').then(res => dispatch(gotIndustries(res)));
-        console.log("IN FETCH INDUSTRIES: " + res)
+        console.log("DATA IN FETCH: " + res)
         return res
     }
 }

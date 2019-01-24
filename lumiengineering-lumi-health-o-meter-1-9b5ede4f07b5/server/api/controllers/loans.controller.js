@@ -18,20 +18,14 @@ const health_values = [0, 50, 80, 110] // extra position workaround
  * @returns void
  */
 export async function get_loans(req, res) {
-  console.log("GET LOANS CALLED")
   var filtered_data = await get_data(req)
   return res.send(filtered_data)
 }
 
 export async function get_industries(req, res) {
-  try {
-    const industry_data = await all_loans.distinct('industry')
-    console.log('INFO: get_industries method, data: ' + industry_data)
-    return res.send(industry_data)
-  }
-  catch(e) {
-    console.log(e)
-  }
+  const industry_data = await all_loans.distinct('industry')
+  console.log("DATA IN CONTROLLER: " + industry_data)
+  return res.send(industry_data)
 }
 
 // include filter param
