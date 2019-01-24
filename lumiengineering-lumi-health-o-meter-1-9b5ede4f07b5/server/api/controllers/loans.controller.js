@@ -23,9 +23,18 @@ export async function get_loans(req, res) {
 }
 
 export async function get_industries(req, res) {
-  const industry_data = await all_loans.distinct('industry')
+  var industry_data = await get_unique_ind()
   console.log("DATA IN CONTROLLER: " + industry_data)
   return res.send(industry_data)
+}
+
+async function get_unique_ind() {
+  try {
+    const unique_array = await all_loans.distinct('industry')
+    return unique_array
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 // include filter param

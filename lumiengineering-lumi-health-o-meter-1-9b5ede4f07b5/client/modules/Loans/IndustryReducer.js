@@ -4,8 +4,6 @@ import { GOT_INDUSTRIES } from './LoansActions';
 const initialState = { data: [] };
 
 const IndustriesReducer = (state = initialState, action) => {
-  console.log('INFO: IndustriesReducer method, data (action): ' + action.data)
-
   switch (action.type) {
     case GOT_INDUSTRIES :
       return {

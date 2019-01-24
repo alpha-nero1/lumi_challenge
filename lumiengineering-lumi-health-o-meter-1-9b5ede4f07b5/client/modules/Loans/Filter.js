@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import  { fetchIndustries } from './IndustryActions';
 import { connect } from 'react-redux';
 
-import { getIndustries } from './IndustryReducer';
+import { fetchIndustries } from './IndustryActions';
 import { fetchData } from './LoansActions';
+
+// Import Selectors
+import { getIndustries } from './IndustryReducer';
 
 export class Filter extends Component {
 
@@ -22,6 +24,8 @@ export class Filter extends Component {
 
     componentDidMount() {
         this.props.dispatch(fetchIndustries())
+
+        console.log("FILTER PROPS: " + this.props)
     }
 
     handle_input_change(event) {
@@ -76,8 +80,6 @@ export class Filter extends Component {
         )
     }
 }
-
-Filter.need = [() => { return fetchIndustries(); }];
 
 // Retrieve data from store as props
 function mapStateToProps(state) {

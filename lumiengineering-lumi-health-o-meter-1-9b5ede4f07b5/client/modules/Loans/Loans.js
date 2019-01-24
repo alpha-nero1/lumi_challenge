@@ -22,8 +22,6 @@ class LoansPage extends Component {
     return 'red'
   }
 
-  
-
   render() {
     const { loans } = this.props;
     let list;
