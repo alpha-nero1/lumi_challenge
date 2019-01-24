@@ -14,16 +14,6 @@ class LoansPage extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      industry: null,
-      health: null,
-    }
-
-    this.handle_submit = this.handle_submit.bind(this)
-  }
-
-  componentDidMount() {
-    console.log('LOANS PROPS ' + this.action)
   }
 
   getColor(val) {
@@ -32,15 +22,7 @@ class LoansPage extends Component {
     return 'red'
   }
 
-  // handle submission of child form
-  handle_submit(event) { 
-    event.preventDefault()
-    this.setState({
-        [event.target.name]: event.target.value
-    })
-    console.log(this.state)
-    this.props.dispatch(fetchData(this.state)) // perform POST with submission data
-  } 
+  
 
   render() {
     const { loans } = this.props;
@@ -80,7 +62,7 @@ class LoansPage extends Component {
     return (
       <div>
         <div>
-          <Filter action={this.handle_submit}/> 
+          <Filter /> 
         </div>
         <div>
           {list}
@@ -92,7 +74,6 @@ class LoansPage extends Component {
 
 // Retrieve data from store as props
 function mapStateToProps(state) {
-  console.log("IN MAP TO STATE: " + state.loans.data)
   return {
     loans: getLoans(state),
   };

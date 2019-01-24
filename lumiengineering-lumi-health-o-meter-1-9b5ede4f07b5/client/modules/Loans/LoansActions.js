@@ -13,8 +13,9 @@ export function gotData(data) {
 
 // fetch data according to filter
 export function fetchData(data) { 
-  return async (dispatch) => {
-    const res = await callApi('/loans', 'post', data);
-    return dispatch(gotData(res));
+  return (dispatch) => {
+    const res = callApi('/loans', 'post', data).then((res) => dispatch(gotData(res)))
+    console.log("WE HAVE LOAN RES")
+    return res
   };
 }
